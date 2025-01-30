@@ -1,0 +1,14 @@
+.elf = executable and linkable format
+linker = memory layout, where to put everything, flash memory start address, ram start address and how big are these 
+source code -> compiler -> .elf -> linker script -> final executable -> flash programmer (writes only to flash memory) -> mcu 
+startup code initilazie the ram and this code runs before main
+global variables initialized  (.data + .const) RAM+FLASH
+const variables goes to flash memory, .const section because they will never change throughout the program 
+global variables that are not initialized goes into .bss section
+local variables that are initialized goes into (.stack +.const) RAM+FLASH .const) RAM+FLASH 
+
+i added button driver and it is working, i need to see if i hold the button pressing, is it incremensing or is it holds its value. dont use NVIC_EnableIRQ and NVIC_SetPriority instead use nvic registers
+
+after that maybe i add 2 different program and make a serial menu for it, i could choose the program that i want to go and when i am in the application i return to the bootloader 
+
+bir bootloaderın kullandığı peripheral kullanıcının attığı kodda configure edilirse ne olur.
