@@ -72,7 +72,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -91,9 +90,9 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-  button_init();
+    MX_GPIO_Init();
+    MX_USART2_UART_Init();
+    button_init();
   /* USER CODE BEGIN 2 */
     char string[50];
     sprintf(string, "\n\rNow program is in the application\n\r");
@@ -106,6 +105,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+        //works fine so why the fuck my interrupts doesn't work
+    if (!(GPIOC->IDR & (1<<13))){
+            goto_address(0x08000000);
+    }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -233,20 +236,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-static void goto_bootloader(void){
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
-  char string[30];
-  sprintf(string, "\n\rI am now in the goto_bootloader\n\r");
-  HAL_UART_Transmit(&huart2, (uint8_t *)string, strlen(string), 10);
-  uint32_t bootloader_stack_pointer = *((volatile uint32_t *)BOOTLOADER_START_ADDRESS);
-  //uint32_t bootloader_reset_handler = *((volatile uint32_t *) (BOOTLOADER_START_ADDRESS + 4));
-  
-  __set_MSP(bootloader_stack_pointer);
-  
-  void (*bootloader_reset_handler)(void) = (void*)(*(volatile uint32_t*)(0x08000000+4));
-  bootloader_reset_handler();
-
-}
 /* USER CODE END 4 */
 
 /**

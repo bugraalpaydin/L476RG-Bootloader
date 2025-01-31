@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccsKqFBs.s 			page 1
+ARM GAS  /tmp/cchgWSjo.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -29,111 +29,112 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
   27              	button_init:
   28              	.LFB132:
    1:Core/Src/button_driver.c **** #include "button_driver.h"
-   2:Core/Src/button_driver.c **** #include <stm32l476xx.h>
-   3:Core/Src/button_driver.c **** 
+   2:Core/Src/button_driver.c **** #include "stm32l4xx_hal_exti.h"
+   3:Core/Src/button_driver.c **** #include <stm32l476xx.h>
    4:Core/Src/button_driver.c **** 
-   5:Core/Src/button_driver.c **** //for interrup generation PC13 -> EXTI13
-   6:Core/Src/button_driver.c **** //SYSCFG->EXTICR4  bits 7:4  0010
-   7:Core/Src/button_driver.c **** 
-   8:Core/Src/button_driver.c **** void button_init(void){
-  29              		.loc 1 8 23 view -0
+   5:Core/Src/button_driver.c **** 
+   6:Core/Src/button_driver.c **** //for interrup generation PC13 -> EXTI13
+   7:Core/Src/button_driver.c **** //SYSCFG->EXTICR4  bits 7:4  0010
+   8:Core/Src/button_driver.c **** 
+   9:Core/Src/button_driver.c **** void button_init(void){
+  29              		.loc 1 9 23 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-   9:Core/Src/button_driver.c ****   //user button is PC13
-  10:Core/Src/button_driver.c ****   RCC->AHB2ENR |= (1<<2);
-  34              		.loc 1 10 3 view .LVU1
-  35              		.loc 1 10 6 is_stmt 0 view .LVU2
-  36 0000 1A4A     		ldr	r2, .L2
+  10:Core/Src/button_driver.c ****     //user button is PC13
+  11:Core/Src/button_driver.c ****     RCC->AHB2ENR |= (1<<2);
+  34              		.loc 1 11 5 view .LVU1
+  35              		.loc 1 11 8 is_stmt 0 view .LVU2
+  36 0000 1D4A     		ldr	r2, .L2
   37 0002 D36C     		ldr	r3, [r2, #76]
-  38              		.loc 1 10 16 view .LVU3
+  38              		.loc 1 11 18 view .LVU3
   39 0004 43F00403 		orr	r3, r3, #4
   40 0008 D364     		str	r3, [r2, #76]
-  11:Core/Src/button_driver.c **** 
-  12:Core/Src/button_driver.c ****   GPIOC->MODER &= ~(1<<27);
-  41              		.loc 1 12 3 is_stmt 1 view .LVU4
-  42              		.loc 1 12 8 is_stmt 0 view .LVU5
-  43 000a 194B     		ldr	r3, .L2+4
+  12:Core/Src/button_driver.c **** 
+  13:Core/Src/button_driver.c ****     GPIOC->MODER &= ~(1<<27);
+  41              		.loc 1 13 5 is_stmt 1 view .LVU4
+  42              		.loc 1 13 10 is_stmt 0 view .LVU5
+  43 000a 1C4B     		ldr	r3, .L2+4
   44 000c 1A68     		ldr	r2, [r3]
-  45              		.loc 1 12 16 view .LVU6
+  45              		.loc 1 13 18 view .LVU6
+ARM GAS  /tmp/cchgWSjo.s 			page 2
+
+
   46 000e 22F00062 		bic	r2, r2, #134217728
-ARM GAS  /tmp/ccsKqFBs.s 			page 2
-
-
   47 0012 1A60     		str	r2, [r3]
-  13:Core/Src/button_driver.c ****   GPIOC->MODER &= ~(1<<26);
-  48              		.loc 1 13 3 is_stmt 1 view .LVU7
-  49              		.loc 1 13 8 is_stmt 0 view .LVU8
+  14:Core/Src/button_driver.c ****     GPIOC->MODER &= ~(1<<26);
+  48              		.loc 1 14 5 is_stmt 1 view .LVU7
+  49              		.loc 1 14 10 is_stmt 0 view .LVU8
   50 0014 1A68     		ldr	r2, [r3]
-  51              		.loc 1 13 16 view .LVU9
+  51              		.loc 1 14 18 view .LVU9
   52 0016 22F08062 		bic	r2, r2, #67108864
   53 001a 1A60     		str	r2, [r3]
-  14:Core/Src/button_driver.c **** 
-  15:Core/Src/button_driver.c ****   GPIOC->PUPDR &= ~(1<<27);
-  54              		.loc 1 15 3 is_stmt 1 view .LVU10
-  55              		.loc 1 15 8 is_stmt 0 view .LVU11
+  15:Core/Src/button_driver.c **** 
+  16:Core/Src/button_driver.c ****     GPIOC->PUPDR &= ~(1<<27);
+  54              		.loc 1 16 5 is_stmt 1 view .LVU10
+  55              		.loc 1 16 10 is_stmt 0 view .LVU11
   56 001c DA68     		ldr	r2, [r3, #12]
-  57              		.loc 1 15 16 view .LVU12
+  57              		.loc 1 16 18 view .LVU12
   58 001e 22F00062 		bic	r2, r2, #134217728
   59 0022 DA60     		str	r2, [r3, #12]
-  16:Core/Src/button_driver.c ****   GPIOC->PUPDR &= ~(1<<26);
-  60              		.loc 1 16 3 is_stmt 1 view .LVU13
-  61              		.loc 1 16 8 is_stmt 0 view .LVU14
+  17:Core/Src/button_driver.c ****     GPIOC->PUPDR &= ~(1<<26);
+  60              		.loc 1 17 5 is_stmt 1 view .LVU13
+  61              		.loc 1 17 10 is_stmt 0 view .LVU14
   62 0024 DA68     		ldr	r2, [r3, #12]
-  63              		.loc 1 16 16 view .LVU15
+  63              		.loc 1 17 18 view .LVU15
   64 0026 22F08062 		bic	r2, r2, #67108864
   65 002a DA60     		str	r2, [r3, #12]
-  17:Core/Src/button_driver.c **** 
-  18:Core/Src/button_driver.c ****   EXTI->IMR1 |= (1<<17);
-  66              		.loc 1 18 3 is_stmt 1 view .LVU16
-  67              		.loc 1 18 7 is_stmt 0 view .LVU17
+  18:Core/Src/button_driver.c **** 
+  19:Core/Src/button_driver.c ****     EXTI->IMR1 |= (1<<17);
+  66              		.loc 1 19 5 is_stmt 1 view .LVU16
+  67              		.loc 1 19 9 is_stmt 0 view .LVU17
   68 002c 03F17843 		add	r3, r3, #-134217728
   69 0030 03F57C43 		add	r3, r3, #64512
   70 0034 1A68     		ldr	r2, [r3]
-  71              		.loc 1 18 14 view .LVU18
+  71              		.loc 1 19 16 view .LVU18
   72 0036 42F40032 		orr	r2, r2, #131072
   73 003a 1A60     		str	r2, [r3]
-  19:Core/Src/button_driver.c ****   EXTI->EMR1 |= (1<<17);
-  74              		.loc 1 19 3 is_stmt 1 view .LVU19
-  75              		.loc 1 19 7 is_stmt 0 view .LVU20
+  20:Core/Src/button_driver.c ****     EXTI->EMR1 |= (1<<17);
+  74              		.loc 1 20 5 is_stmt 1 view .LVU19
+  75              		.loc 1 20 9 is_stmt 0 view .LVU20
   76 003c 5A68     		ldr	r2, [r3, #4]
-  77              		.loc 1 19 14 view .LVU21
+  77              		.loc 1 20 16 view .LVU21
   78 003e 42F40032 		orr	r2, r2, #131072
   79 0042 5A60     		str	r2, [r3, #4]
-  20:Core/Src/button_driver.c ****   EXTI->FTSR1 |= (1<<13);
-  80              		.loc 1 20 3 is_stmt 1 view .LVU22
-  81              		.loc 1 20 7 is_stmt 0 view .LVU23
+  21:Core/Src/button_driver.c ****     EXTI->FTSR1 |= (1<<13);
+  80              		.loc 1 21 5 is_stmt 1 view .LVU22
+  81              		.loc 1 21 9 is_stmt 0 view .LVU23
   82 0044 DA68     		ldr	r2, [r3, #12]
-  83              		.loc 1 20 15 view .LVU24
+  83              		.loc 1 21 17 view .LVU24
   84 0046 42F40052 		orr	r2, r2, #8192
   85 004a DA60     		str	r2, [r3, #12]
-  21:Core/Src/button_driver.c **** 
-  22:Core/Src/button_driver.c ****   //NVIC_EnableIRQ(EXTI15_10_IRQn);
-  23:Core/Src/button_driver.c ****   NVIC->ISER[1] |= (1<<8);
-  86              		.loc 1 23 3 is_stmt 1 view .LVU25
-  87              		.loc 1 23 13 is_stmt 0 view .LVU26
-  88 004c 094B     		ldr	r3, .L2+8
+  22:Core/Src/button_driver.c **** 
+  23:Core/Src/button_driver.c ****     //NVIC_EnableIRQ(EXTI15_10_IRQn);
+  24:Core/Src/button_driver.c ****     NVIC->ISER[1] |= (1<<8);
+  86              		.loc 1 24 5 is_stmt 1 view .LVU25
+  87              		.loc 1 24 15 is_stmt 0 view .LVU26
+  88 004c 0C4B     		ldr	r3, .L2+8
   89 004e 5A68     		ldr	r2, [r3, #4]
-  90              		.loc 1 23 17 view .LVU27
+  90              		.loc 1 24 19 view .LVU27
   91 0050 42F48072 		orr	r2, r2, #256
+ARM GAS  /tmp/cchgWSjo.s 			page 3
+
+
   92 0054 5A60     		str	r2, [r3, #4]
-ARM GAS  /tmp/ccsKqFBs.s 			page 3
-
-
-  24:Core/Src/button_driver.c ****   //1111 1111
-  25:Core/Src/button_driver.c ****   NVIC->IP[10] |= (3<<4);
-  93              		.loc 1 25 3 is_stmt 1 view .LVU28
-  94              		.loc 1 25 11 is_stmt 0 view .LVU29
+  25:Core/Src/button_driver.c ****     //1111 1111
+  26:Core/Src/button_driver.c ****     NVIC->IP[10] |= (3<<4);
+  93              		.loc 1 26 5 is_stmt 1 view .LVU28
+  94              		.loc 1 26 13 is_stmt 0 view .LVU29
   95 0056 93F80A23 		ldrb	r2, [r3, #778]	@ zero_extendqisi2
-  96              		.loc 1 25 16 view .LVU30
+  96              		.loc 1 26 18 view .LVU30
   97 005a 42F03002 		orr	r2, r2, #48
   98 005e 83F80A23 		strb	r2, [r3, #778]
-  26:Core/Src/button_driver.c ****   NVIC_SetPriority(EXTI15_10_IRQn, 1);
-  99              		.loc 1 26 3 is_stmt 1 view .LVU31
+  27:Core/Src/button_driver.c ****     NVIC_SetPriority(EXTI15_10_IRQn, 1);
+  99              		.loc 1 27 5 is_stmt 1 view .LVU31
  100              	.LVL0:
- 101              	.LBB4:
- 102              	.LBI4:
+ 101              	.LBB8:
+ 102              	.LBI8:
  103              		.file 2 "Drivers/CMSIS/Include/core_cm4.h"
    1:Drivers/CMSIS/Include/core_cm4.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/core_cm4.h ****  * @file     core_cm4.h
@@ -177,10 +178,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
   40:Drivers/CMSIS/Include/core_cm4.h **** /**
   41:Drivers/CMSIS/Include/core_cm4.h ****   \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
   42:Drivers/CMSIS/Include/core_cm4.h ****   CMSIS violates the following MISRA-C:2004 rules:
+ARM GAS  /tmp/cchgWSjo.s 			page 4
+
+
   43:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 4
-
-
   44:Drivers/CMSIS/Include/core_cm4.h ****    \li Required Rule 8.5, object/function definition in header file.<br>
   45:Drivers/CMSIS/Include/core_cm4.h ****      Function definitions in header files are used to allow 'inlining'.
   46:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -237,10 +238,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
   97:Drivers/CMSIS/Include/core_cm4.h ****     #define __FPU_USED         0U
   98:Drivers/CMSIS/Include/core_cm4.h ****   #endif
   99:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 5
+
+
  100:Drivers/CMSIS/Include/core_cm4.h **** #elif defined ( __GNUC__ )
-ARM GAS  /tmp/ccsKqFBs.s 			page 5
-
-
  101:Drivers/CMSIS/Include/core_cm4.h ****   #if defined (__VFP_FP__) && !defined(__SOFTFP__)
  102:Drivers/CMSIS/Include/core_cm4.h ****     #if defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)
  103:Drivers/CMSIS/Include/core_cm4.h ****       #define __FPU_USED       1U
@@ -297,10 +298,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  154:Drivers/CMSIS/Include/core_cm4.h ****       #define __FPU_USED       0U
  155:Drivers/CMSIS/Include/core_cm4.h ****     #endif
  156:Drivers/CMSIS/Include/core_cm4.h ****   #else
+ARM GAS  /tmp/cchgWSjo.s 			page 6
+
+
  157:Drivers/CMSIS/Include/core_cm4.h ****     #define __FPU_USED         0U
-ARM GAS  /tmp/ccsKqFBs.s 			page 6
-
-
  158:Drivers/CMSIS/Include/core_cm4.h ****   #endif
  159:Drivers/CMSIS/Include/core_cm4.h **** 
  160:Drivers/CMSIS/Include/core_cm4.h **** #endif
@@ -357,10 +358,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  211:Drivers/CMSIS/Include/core_cm4.h **** 
  212:Drivers/CMSIS/Include/core_cm4.h ****     <strong>IO Type Qualifiers</strong> are used
  213:Drivers/CMSIS/Include/core_cm4.h ****     \li to specify the access to peripheral variables.
+ARM GAS  /tmp/cchgWSjo.s 			page 7
+
+
  214:Drivers/CMSIS/Include/core_cm4.h ****     \li for automatic generation of peripheral register debug information.
-ARM GAS  /tmp/ccsKqFBs.s 			page 7
-
-
  215:Drivers/CMSIS/Include/core_cm4.h **** */
  216:Drivers/CMSIS/Include/core_cm4.h **** #ifdef __cplusplus
  217:Drivers/CMSIS/Include/core_cm4.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
@@ -417,10 +418,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  268:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
  269:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
  270:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ARM GAS  /tmp/cchgWSjo.s 			page 8
+
+
  271:Drivers/CMSIS/Include/core_cm4.h ****   } b;                                   /*!< Structure used for bit  access */
-ARM GAS  /tmp/ccsKqFBs.s 			page 8
-
-
  272:Drivers/CMSIS/Include/core_cm4.h ****   uint32_t w;                            /*!< Type      used for word access */
  273:Drivers/CMSIS/Include/core_cm4.h **** } APSR_Type;
  274:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -477,10 +478,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  325:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t T:1;                        /*!< bit:     24  Thumb bit */
  326:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t ICI_IT_2:2;                 /*!< bit: 25..26  ICI/IT part 2 */
  327:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag */
+ARM GAS  /tmp/cchgWSjo.s 			page 9
+
+
  328:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
-ARM GAS  /tmp/ccsKqFBs.s 			page 9
-
-
  329:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
  330:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
  331:Drivers/CMSIS/Include/core_cm4.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
@@ -537,10 +538,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  382:Drivers/CMSIS/Include/core_cm4.h **** 
  383:Drivers/CMSIS/Include/core_cm4.h **** /* CONTROL Register Definitions */
  384:Drivers/CMSIS/Include/core_cm4.h **** #define CONTROL_FPCA_Pos                    2U                                            /*!< CONT
+ARM GAS  /tmp/cchgWSjo.s 			page 10
+
+
  385:Drivers/CMSIS/Include/core_cm4.h **** #define CONTROL_FPCA_Msk                   (1UL << CONTROL_FPCA_Pos)                      /*!< CONT
-ARM GAS  /tmp/ccsKqFBs.s 			page 10
-
-
  386:Drivers/CMSIS/Include/core_cm4.h **** 
  387:Drivers/CMSIS/Include/core_cm4.h **** #define CONTROL_SPSEL_Pos                   1U                                            /*!< CONT
  388:Drivers/CMSIS/Include/core_cm4.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
@@ -597,10 +598,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  439:Drivers/CMSIS/Include/core_cm4.h ****  */
  440:Drivers/CMSIS/Include/core_cm4.h **** typedef struct
  441:Drivers/CMSIS/Include/core_cm4.h **** {
+ARM GAS  /tmp/cchgWSjo.s 			page 11
+
+
  442:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t CPUID;                  /*!< Offset: 0x000 (R/ )  CPUID Base Register */
-ARM GAS  /tmp/ccsKqFBs.s 			page 11
-
-
  443:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t ICSR;                   /*!< Offset: 0x004 (R/W)  Interrupt Control and State Regi
  444:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t VTOR;                   /*!< Offset: 0x008 (R/W)  Vector Table Offset Register */
  445:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t AIRCR;                  /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset 
@@ -657,10 +658,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  496:Drivers/CMSIS/Include/core_cm4.h **** 
  497:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
  498:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
+ARM GAS  /tmp/cchgWSjo.s 			page 12
+
+
  499:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 12
-
-
  500:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_ICSR_ISRPENDING_Pos            22U                                            /*!< SCB 
  501:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_ICSR_ISRPENDING_Msk            (1UL << SCB_ICSR_ISRPENDING_Pos)               /*!< SCB 
  502:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -717,10 +718,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  553:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CCR_BFHFNMIGN_Msk              (1UL << SCB_CCR_BFHFNMIGN_Pos)                 /*!< SCB 
  554:Drivers/CMSIS/Include/core_cm4.h **** 
  555:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CCR_DIV_0_TRP_Pos               4U                                            /*!< SCB 
+ARM GAS  /tmp/cchgWSjo.s 			page 13
+
+
  556:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CCR_DIV_0_TRP_Msk              (1UL << SCB_CCR_DIV_0_TRP_Pos)                 /*!< SCB 
-ARM GAS  /tmp/ccsKqFBs.s 			page 13
-
-
  557:Drivers/CMSIS/Include/core_cm4.h **** 
  558:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CCR_UNALIGN_TRP_Pos             3U                                            /*!< SCB 
  559:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CCR_UNALIGN_TRP_Msk            (1UL << SCB_CCR_UNALIGN_TRP_Pos)               /*!< SCB 
@@ -777,10 +778,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  610:Drivers/CMSIS/Include/core_cm4.h **** /* SCB Configurable Fault Status Register Definitions */
  611:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_USGFAULTSR_Pos            16U                                            /*!< SCB 
  612:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_USGFAULTSR_Msk            (0xFFFFUL << SCB_CFSR_USGFAULTSR_Pos)          /*!< SCB 
+ARM GAS  /tmp/cchgWSjo.s 			page 14
+
+
  613:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 14
-
-
  614:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_BUSFAULTSR_Pos             8U                                            /*!< SCB 
  615:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_BUSFAULTSR_Msk            (0xFFUL << SCB_CFSR_BUSFAULTSR_Pos)            /*!< SCB 
  616:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -837,10 +838,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  667:Drivers/CMSIS/Include/core_cm4.h **** 
  668:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_NOCP_Pos                 (SCB_CFSR_USGFAULTSR_Pos + 3U)                  /*!< SCB 
  669:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_NOCP_Msk                 (1UL << SCB_CFSR_NOCP_Pos)                      /*!< SCB 
+ARM GAS  /tmp/cchgWSjo.s 			page 15
+
+
  670:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 15
-
-
  671:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_INVPC_Pos                (SCB_CFSR_USGFAULTSR_Pos + 2U)                  /*!< SCB 
  672:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_INVPC_Msk                (1UL << SCB_CFSR_INVPC_Pos)                     /*!< SCB 
  673:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -897,10 +898,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  724:Drivers/CMSIS/Include/core_cm4.h **** } SCnSCB_Type;
  725:Drivers/CMSIS/Include/core_cm4.h **** 
  726:Drivers/CMSIS/Include/core_cm4.h **** /* Interrupt Controller Type Register Definitions */
+ARM GAS  /tmp/cchgWSjo.s 			page 16
+
+
  727:Drivers/CMSIS/Include/core_cm4.h **** #define SCnSCB_ICTR_INTLINESNUM_Pos         0U                                         /*!< ICTR: I
-ARM GAS  /tmp/ccsKqFBs.s 			page 16
-
-
  728:Drivers/CMSIS/Include/core_cm4.h **** #define SCnSCB_ICTR_INTLINESNUM_Msk        (0xFUL /*<< SCnSCB_ICTR_INTLINESNUM_Pos*/)  /*!< ICTR: I
  729:Drivers/CMSIS/Include/core_cm4.h **** 
  730:Drivers/CMSIS/Include/core_cm4.h **** /* Auxiliary Control Register Definitions */
@@ -957,10 +958,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  781:Drivers/CMSIS/Include/core_cm4.h **** #define SysTick_LOAD_RELOAD_Pos             0U                                            /*!< SysT
  782:Drivers/CMSIS/Include/core_cm4.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL /*<< SysTick_LOAD_RELOAD_Pos*/)    /*!< SysT
  783:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 17
+
+
  784:Drivers/CMSIS/Include/core_cm4.h **** /* SysTick Current Register Definitions */
-ARM GAS  /tmp/ccsKqFBs.s 			page 17
-
-
  785:Drivers/CMSIS/Include/core_cm4.h **** #define SysTick_VAL_CURRENT_Pos             0U                                            /*!< SysT
  786:Drivers/CMSIS/Include/core_cm4.h **** #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFUL /*<< SysTick_VAL_CURRENT_Pos*/)    /*!< SysT
  787:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -1017,10 +1018,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  838:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t CID0;                   /*!< Offset: 0xFF0 (R/ )  ITM Component  Identification Re
  839:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t CID1;                   /*!< Offset: 0xFF4 (R/ )  ITM Component  Identification Re
  840:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t CID2;                   /*!< Offset: 0xFF8 (R/ )  ITM Component  Identification Re
+ARM GAS  /tmp/cchgWSjo.s 			page 18
+
+
  841:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t CID3;                   /*!< Offset: 0xFFC (R/ )  ITM Component  Identification Re
-ARM GAS  /tmp/ccsKqFBs.s 			page 18
-
-
  842:Drivers/CMSIS/Include/core_cm4.h **** } ITM_Type;
  843:Drivers/CMSIS/Include/core_cm4.h **** 
  844:Drivers/CMSIS/Include/core_cm4.h **** /* ITM Trace Privilege Register Definitions */
@@ -1077,10 +1078,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  895:Drivers/CMSIS/Include/core_cm4.h **** 
  896:Drivers/CMSIS/Include/core_cm4.h **** /**
  897:Drivers/CMSIS/Include/core_cm4.h ****   \brief  Structure type to access the Data Watchpoint and Trace Register (DWT).
+ARM GAS  /tmp/cchgWSjo.s 			page 19
+
+
  898:Drivers/CMSIS/Include/core_cm4.h ****  */
-ARM GAS  /tmp/ccsKqFBs.s 			page 19
-
-
  899:Drivers/CMSIS/Include/core_cm4.h **** typedef struct
  900:Drivers/CMSIS/Include/core_cm4.h **** {
  901:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t CTRL;                   /*!< Offset: 0x000 (R/W)  Control Register */
@@ -1137,10 +1138,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  952:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_SLEEPEVTENA_Msk           (0x1UL << DWT_CTRL_SLEEPEVTENA_Pos)         /*!< DWT CTR
  953:Drivers/CMSIS/Include/core_cm4.h **** 
  954:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_EXCEVTENA_Pos             18U                                         /*!< DWT CTR
+ARM GAS  /tmp/cchgWSjo.s 			page 20
+
+
  955:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_EXCEVTENA_Msk             (0x1UL << DWT_CTRL_EXCEVTENA_Pos)           /*!< DWT CTR
-ARM GAS  /tmp/ccsKqFBs.s 			page 20
-
-
  956:Drivers/CMSIS/Include/core_cm4.h **** 
  957:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_CPIEVTENA_Pos             17U                                         /*!< DWT CTR
  958:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_CPIEVTENA_Msk             (0x1UL << DWT_CTRL_CPIEVTENA_Pos)           /*!< DWT CTR
@@ -1197,10 +1198,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1009:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_DATAVADDR1_Pos        16U                                         /*!< DWT FUN
 1010:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_DATAVADDR1_Msk        (0xFUL << DWT_FUNCTION_DATAVADDR1_Pos)      /*!< DWT FUN
 1011:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 21
+
+
 1012:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_DATAVADDR0_Pos        12U                                         /*!< DWT FUN
-ARM GAS  /tmp/ccsKqFBs.s 			page 21
-
-
 1013:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_DATAVADDR0_Msk        (0xFUL << DWT_FUNCTION_DATAVADDR0_Pos)      /*!< DWT FUN
 1014:Drivers/CMSIS/Include/core_cm4.h **** 
 1015:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_DATAVSIZE_Pos         10U                                         /*!< DWT FUN
@@ -1257,10 +1258,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1066:Drivers/CMSIS/Include/core_cm4.h ****         uint32_t RESERVED5[39U];
 1067:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t CLAIMSET;               /*!< Offset: 0xFA0 (R/W)  Claim tag set */
 1068:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t CLAIMCLR;               /*!< Offset: 0xFA4 (R/W)  Claim tag clear */
+ARM GAS  /tmp/cchgWSjo.s 			page 22
+
+
 1069:Drivers/CMSIS/Include/core_cm4.h ****         uint32_t RESERVED7[8U];
-ARM GAS  /tmp/ccsKqFBs.s 			page 22
-
-
 1070:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t DEVID;                  /*!< Offset: 0xFC8 (R/ )  TPIU_DEVID */
 1071:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t DEVTYPE;                /*!< Offset: 0xFCC (R/ )  TPIU_DEVTYPE */
 1072:Drivers/CMSIS/Include/core_cm4.h **** } TPI_Type;
@@ -1317,10 +1318,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1123:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FIFO0_ETM1_Msk                 (0xFFUL << TPI_FIFO0_ETM1_Pos)              /*!< TPI FIF
 1124:Drivers/CMSIS/Include/core_cm4.h **** 
 1125:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FIFO0_ETM0_Pos                  0U                                         /*!< TPI FIF
+ARM GAS  /tmp/cchgWSjo.s 			page 23
+
+
 1126:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FIFO0_ETM0_Msk                 (0xFFUL /*<< TPI_FIFO0_ETM0_Pos*/)          /*!< TPI FIF
-ARM GAS  /tmp/ccsKqFBs.s 			page 23
-
-
 1127:Drivers/CMSIS/Include/core_cm4.h **** 
 1128:Drivers/CMSIS/Include/core_cm4.h **** /* TPI ITATBCTR2 Register Definitions */
 1129:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_ITATBCTR2_ATREADY2_Pos          0U                                         /*!< TPI ITA
@@ -1377,10 +1378,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1180:Drivers/CMSIS/Include/core_cm4.h **** 
 1181:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_DEVID_AsynClkIn_Pos             5U                                         /*!< TPI DEV
 1182:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_DEVID_AsynClkIn_Msk            (0x1UL << TPI_DEVID_AsynClkIn_Pos)          /*!< TPI DEV
+ARM GAS  /tmp/cchgWSjo.s 			page 24
+
+
 1183:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 24
-
-
 1184:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_DEVID_NrTraceInput_Pos          0U                                         /*!< TPI DEV
 1185:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_DEVID_NrTraceInput_Msk         (0x1FUL /*<< TPI_DEVID_NrTraceInput_Pos*/)  /*!< TPI DEV
 1186:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -1437,10 +1438,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1237:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_CTRL_PRIVDEFENA_Msk            (1UL << MPU_CTRL_PRIVDEFENA_Pos)               /*!< MPU 
 1238:Drivers/CMSIS/Include/core_cm4.h **** 
 1239:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_CTRL_HFNMIENA_Pos               1U                                            /*!< MPU 
+ARM GAS  /tmp/cchgWSjo.s 			page 25
+
+
 1240:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_CTRL_HFNMIENA_Msk              (1UL << MPU_CTRL_HFNMIENA_Pos)                 /*!< MPU 
-ARM GAS  /tmp/ccsKqFBs.s 			page 25
-
-
 1241:Drivers/CMSIS/Include/core_cm4.h **** 
 1242:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_CTRL_ENABLE_Pos                 0U                                            /*!< MPU 
 1243:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_CTRL_ENABLE_Msk                (1UL /*<< MPU_CTRL_ENABLE_Pos*/)               /*!< MPU 
@@ -1497,10 +1498,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1294:Drivers/CMSIS/Include/core_cm4.h **** /**
 1295:Drivers/CMSIS/Include/core_cm4.h ****   \ingroup  CMSIS_core_register
 1296:Drivers/CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_FPU     Floating Point Unit (FPU)
+ARM GAS  /tmp/cchgWSjo.s 			page 26
+
+
 1297:Drivers/CMSIS/Include/core_cm4.h ****   \brief    Type definitions for the Floating Point Unit (FPU)
-ARM GAS  /tmp/ccsKqFBs.s 			page 26
-
-
 1298:Drivers/CMSIS/Include/core_cm4.h ****   @{
 1299:Drivers/CMSIS/Include/core_cm4.h ****  */
 1300:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -1557,10 +1558,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1351:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_FPDSCR_DN_Pos                  25U                                            /*!< FPDS
 1352:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_FPDSCR_DN_Msk                  (1UL << FPU_FPDSCR_DN_Pos)                     /*!< FPDS
 1353:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 27
+
+
 1354:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_FPDSCR_FZ_Pos                  24U                                            /*!< FPDS
-ARM GAS  /tmp/ccsKqFBs.s 			page 27
-
-
 1355:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_FPDSCR_FZ_Msk                  (1UL << FPU_FPDSCR_FZ_Pos)                     /*!< FPDS
 1356:Drivers/CMSIS/Include/core_cm4.h **** 
 1357:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_FPDSCR_RMode_Pos               22U                                            /*!< FPDS
@@ -1617,10 +1618,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1408:Drivers/CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_CoreDebug       Core Debug Registers (CoreDebug)
 1409:Drivers/CMSIS/Include/core_cm4.h ****   \brief    Type definitions for the Core Debug Registers
 1410:Drivers/CMSIS/Include/core_cm4.h ****   @{
+ARM GAS  /tmp/cchgWSjo.s 			page 28
+
+
 1411:Drivers/CMSIS/Include/core_cm4.h ****  */
-ARM GAS  /tmp/ccsKqFBs.s 			page 28
-
-
 1412:Drivers/CMSIS/Include/core_cm4.h **** 
 1413:Drivers/CMSIS/Include/core_cm4.h **** /**
 1414:Drivers/CMSIS/Include/core_cm4.h ****   \brief  Structure type to access the Core Debug Register (CoreDebug).
@@ -1677,10 +1678,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1465:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DCRSR_REGSEL_Pos          0U                                            /*!< Core
 1466:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DCRSR_REGSEL_Msk         (0x1FUL /*<< CoreDebug_DCRSR_REGSEL_Pos*/)     /*!< Core
 1467:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 29
+
+
 1468:Drivers/CMSIS/Include/core_cm4.h **** /* Debug Exception and Monitor Control Register Definitions */
-ARM GAS  /tmp/ccsKqFBs.s 			page 29
-
-
 1469:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_TRCENA_Pos         24U                                            /*!< Core
 1470:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_TRCENA_Msk         (1UL << CoreDebug_DEMCR_TRCENA_Pos)            /*!< Core
 1471:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -1737,10 +1738,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1522:Drivers/CMSIS/Include/core_cm4.h ****   \return           Masked and shifted value.
 1523:Drivers/CMSIS/Include/core_cm4.h **** */
 1524:Drivers/CMSIS/Include/core_cm4.h **** #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
+ARM GAS  /tmp/cchgWSjo.s 			page 30
+
+
 1525:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /tmp/ccsKqFBs.s 			page 30
-
-
 1526:Drivers/CMSIS/Include/core_cm4.h **** /**
 1527:Drivers/CMSIS/Include/core_cm4.h ****   \brief     Mask and shift a register value to extract a bit filed value.
 1528:Drivers/CMSIS/Include/core_cm4.h ****   \param[in] field  Name of the register bit field.
@@ -1797,10 +1798,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1579:Drivers/CMSIS/Include/core_cm4.h ****   - Core SysTick Functions
 1580:Drivers/CMSIS/Include/core_cm4.h ****   - Core Debug Functions
 1581:Drivers/CMSIS/Include/core_cm4.h ****   - Core Register Access Functions
+ARM GAS  /tmp/cchgWSjo.s 			page 31
+
+
 1582:Drivers/CMSIS/Include/core_cm4.h ****  ******************************************************************************/
-ARM GAS  /tmp/ccsKqFBs.s 			page 31
-
-
 1583:Drivers/CMSIS/Include/core_cm4.h **** /**
 1584:Drivers/CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
 1585:Drivers/CMSIS/Include/core_cm4.h **** */
@@ -1857,10 +1858,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1636:Drivers/CMSIS/Include/core_cm4.h **** #define EXC_RETURN_THREAD_PSP_FPU  (0xFFFFFFEDUL)     /* return to Thread mode, uses PSP after retu
 1637:Drivers/CMSIS/Include/core_cm4.h **** 
 1638:Drivers/CMSIS/Include/core_cm4.h **** 
+ARM GAS  /tmp/cchgWSjo.s 			page 32
+
+
 1639:Drivers/CMSIS/Include/core_cm4.h **** /**
-ARM GAS  /tmp/ccsKqFBs.s 			page 32
-
-
 1640:Drivers/CMSIS/Include/core_cm4.h ****   \brief   Set Priority Grouping
 1641:Drivers/CMSIS/Include/core_cm4.h ****   \details Sets the priority grouping field using the required unlock sequence.
 1642:Drivers/CMSIS/Include/core_cm4.h ****            The parameter PriorityGroup is assigned to the field SCB->AIRCR [10:8] PRIGROUP field.
@@ -1917,10 +1918,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1693:Drivers/CMSIS/Include/core_cm4.h ****   \param [in]      IRQn  Device specific interrupt number.
 1694:Drivers/CMSIS/Include/core_cm4.h ****   \return             0  Interrupt is not enabled.
 1695:Drivers/CMSIS/Include/core_cm4.h ****   \return             1  Interrupt is enabled.
+ARM GAS  /tmp/cchgWSjo.s 			page 33
+
+
 1696:Drivers/CMSIS/Include/core_cm4.h ****   \note    IRQn must not be negative.
-ARM GAS  /tmp/ccsKqFBs.s 			page 33
-
-
 1697:Drivers/CMSIS/Include/core_cm4.h ****  */
 1698:Drivers/CMSIS/Include/core_cm4.h **** __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
 1699:Drivers/CMSIS/Include/core_cm4.h **** {
@@ -1977,10 +1978,10 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1750:Drivers/CMSIS/Include/core_cm4.h ****   \brief   Set Pending Interrupt
 1751:Drivers/CMSIS/Include/core_cm4.h ****   \details Sets the pending bit of a device specific interrupt in the NVIC pending register.
 1752:Drivers/CMSIS/Include/core_cm4.h ****   \param [in]      IRQn  Device specific interrupt number.
+ARM GAS  /tmp/cchgWSjo.s 			page 34
+
+
 1753:Drivers/CMSIS/Include/core_cm4.h ****   \note    IRQn must not be negative.
-ARM GAS  /tmp/ccsKqFBs.s 			page 34
-
-
 1754:Drivers/CMSIS/Include/core_cm4.h ****  */
 1755:Drivers/CMSIS/Include/core_cm4.h **** __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
 1756:Drivers/CMSIS/Include/core_cm4.h **** {
@@ -2037,11 +2038,11 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
 1807:Drivers/CMSIS/Include/core_cm4.h ****   \note    The priority cannot be set for every processor exception.
 1808:Drivers/CMSIS/Include/core_cm4.h ****  */
 1809:Drivers/CMSIS/Include/core_cm4.h **** __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+ARM GAS  /tmp/cchgWSjo.s 			page 35
+
+
  104              		.loc 2 1809 22 view .LVU32
-ARM GAS  /tmp/ccsKqFBs.s 			page 35
-
-
- 105              	.LBB5:
+ 105              	.LBB9:
 1810:Drivers/CMSIS/Include/core_cm4.h **** {
 1811:Drivers/CMSIS/Include/core_cm4.h ****   if ((int32_t)(IRQn) >= 0)
  106              		.loc 2 1811 3 view .LVU33
@@ -2053,165 +2054,278 @@ ARM GAS  /tmp/ccsKqFBs.s 			page 1
  110 0064 83F82823 		strb	r2, [r3, #808]
  111              	.LVL1:
  112              		.loc 2 1813 46 view .LVU36
- 113              	.LBE5:
- 114              	.LBE4:
-  27:Core/Src/button_driver.c **** }
- 115              		.loc 1 27 1 view .LVU37
- 116 0068 7047     		bx	lr
- 117              	.L3:
- 118 006a 00BF     		.align	2
- 119              	.L2:
- 120 006c 00100240 		.word	1073876992
- 121 0070 00080048 		.word	1207961600
- 122 0074 00E100E0 		.word	-536813312
- 123              		.cfi_endproc
- 124              	.LFE132:
- 126              		.section	.text.button_read,"ax",%progbits
- 127              		.align	1
- 128              		.global	button_read
- 129              		.syntax unified
- 130              		.thumb
- 131              		.thumb_func
- 133              	button_read:
- 134              	.LFB133:
-  28:Core/Src/button_driver.c **** uint32_t button_read(void){
- 135              		.loc 1 28 27 is_stmt 1 view -0
- 136              		.cfi_startproc
- 137              		@ args = 0, pretend = 0, frame = 0
- 138              		@ frame_needed = 0, uses_anonymous_args = 0
- 139              		@ link register save eliminated.
-  29:Core/Src/button_driver.c ****   uint32_t data = (GPIOC->IDR & (1<<13));
- 140              		.loc 1 29 3 view .LVU39
- 141              		.loc 1 29 25 is_stmt 0 view .LVU40
- 142 0000 024B     		ldr	r3, .L5
- 143 0002 1869     		ldr	r0, [r3, #16]
- 144              	.LVL2:
-  30:Core/Src/button_driver.c ****   return data;
- 145              		.loc 1 30 3 is_stmt 1 view .LVU41
+ 113              	.LBE9:
+ 114              	.LBE8:
+  28:Core/Src/button_driver.c **** 
+  29:Core/Src/button_driver.c ****     NVIC_EnableIRQ(EXTI9_5_IRQn);
+ 115              		.loc 1 29 5 is_stmt 1 view .LVU37
+ 116              	.LBB10:
+ 117              	.LBI10:
+1679:Drivers/CMSIS/Include/core_cm4.h **** {
+ 118              		.loc 2 1679 22 view .LVU38
+ 119              	.LBB11:
+1681:Drivers/CMSIS/Include/core_cm4.h ****   {
+ 120              		.loc 2 1681 3 view .LVU39
+1683:Drivers/CMSIS/Include/core_cm4.h ****     NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 121              		.loc 2 1683 5 view .LVU40
+1684:Drivers/CMSIS/Include/core_cm4.h ****     __COMPILER_BARRIER();
+ 122              		.loc 2 1684 5 view .LVU41
+1684:Drivers/CMSIS/Include/core_cm4.h ****     __COMPILER_BARRIER();
+ 123              		.loc 2 1684 43 is_stmt 0 view .LVU42
+ 124 0068 4FF40002 		mov	r2, #8388608
+ 125 006c 1A60     		str	r2, [r3]
+1685:Drivers/CMSIS/Include/core_cm4.h ****   }
+ 126              		.loc 2 1685 5 is_stmt 1 view .LVU43
+ 127              	.LVL2:
+1685:Drivers/CMSIS/Include/core_cm4.h ****   }
+ 128              		.loc 2 1685 5 is_stmt 0 view .LVU44
+ 129              	.LBE11:
+ 130              	.LBE10:
+  30:Core/Src/button_driver.c ****     NVIC_SetPriority(EXTI9_5_IRQn, 0);
+ 131              		.loc 1 30 5 is_stmt 1 view .LVU45
+ 132              	.LBB12:
+ 133              	.LBI12:
+1809:Drivers/CMSIS/Include/core_cm4.h **** {
+ 134              		.loc 2 1809 22 view .LVU46
+ 135              	.LBB13:
+1811:Drivers/CMSIS/Include/core_cm4.h ****   {
+ 136              		.loc 2 1811 3 view .LVU47
+ 137              		.loc 2 1813 5 view .LVU48
+ 138              		.loc 2 1813 46 is_stmt 0 view .LVU49
+ 139 006e 0022     		movs	r2, #0
+ 140 0070 83F81723 		strb	r2, [r3, #791]
+ 141              	.LVL3:
+ 142              		.loc 2 1813 46 view .LVU50
+ 143              	.LBE13:
+ 144              	.LBE12:
+ARM GAS  /tmp/cchgWSjo.s 			page 36
+
+
   31:Core/Src/button_driver.c **** }
- 146              		.loc 1 31 1 is_stmt 0 view .LVU42
- 147 0004 00F40050 		and	r0, r0, #8192
- 148              	.LVL3:
- 149              		.loc 1 31 1 view .LVU43
- 150 0008 7047     		bx	lr
- 151              	.L6:
- 152 000a 00BF     		.align	2
- 153              	.L5:
- 154 000c 00080048 		.word	1207961600
-ARM GAS  /tmp/ccsKqFBs.s 			page 36
+ 145              		.loc 1 31 1 view .LVU51
+ 146 0074 7047     		bx	lr
+ 147              	.L3:
+ 148 0076 00BF     		.align	2
+ 149              	.L2:
+ 150 0078 00100240 		.word	1073876992
+ 151 007c 00080048 		.word	1207961600
+ 152 0080 00E100E0 		.word	-536813312
+ 153              		.cfi_endproc
+ 154              	.LFE132:
+ 156              		.section	.text.button_read,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	button_read
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	button_read:
+ 164              	.LFB133:
+  32:Core/Src/button_driver.c **** uint32_t button_read(void){
+ 165              		.loc 1 32 27 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+  33:Core/Src/button_driver.c ****   uint32_t data = (GPIOC->IDR & (1<<13));
+ 170              		.loc 1 33 3 view .LVU53
+ 171              		.loc 1 33 25 is_stmt 0 view .LVU54
+ 172 0000 024B     		ldr	r3, .L5
+ 173 0002 1869     		ldr	r0, [r3, #16]
+ 174              	.LVL4:
+  34:Core/Src/button_driver.c ****   return data;
+ 175              		.loc 1 34 3 is_stmt 1 view .LVU55
+  35:Core/Src/button_driver.c **** }
+ 176              		.loc 1 35 1 is_stmt 0 view .LVU56
+ 177 0004 00F40050 		and	r0, r0, #8192
+ 178              	.LVL5:
+ 179              		.loc 1 35 1 view .LVU57
+ 180 0008 7047     		bx	lr
+ 181              	.L6:
+ 182 000a 00BF     		.align	2
+ 183              	.L5:
+ 184 000c 00080048 		.word	1207961600
+ 185              		.cfi_endproc
+ 186              	.LFE133:
+ 188              		.section	.text.EXTI9_5_IRQHandler,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	EXTI9_5_IRQHandler
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	EXTI9_5_IRQHandler:
+ 196              	.LFB134:
+  36:Core/Src/button_driver.c **** 
+  37:Core/Src/button_driver.c **** void EXTI9_5_IRQHandler(void){
+ 197              		.loc 1 37 30 is_stmt 1 view -0
+ 198              		.cfi_startproc
+ARM GAS  /tmp/cchgWSjo.s 			page 37
 
 
- 155              		.cfi_endproc
- 156              	.LFE133:
- 158              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
- 159              		.align	1
- 160              		.global	EXTI15_10_IRQHandler
- 161              		.syntax unified
- 162              		.thumb
- 163              		.thumb_func
- 165              	EXTI15_10_IRQHandler:
- 166              	.LFB134:
-  32:Core/Src/button_driver.c **** 
-  33:Core/Src/button_driver.c **** 
-  34:Core/Src/button_driver.c **** void EXTI15_10_IRQHandler(void){
- 167              		.loc 1 34 32 is_stmt 1 view -0
- 168              		.cfi_startproc
- 169              		@ args = 0, pretend = 0, frame = 0
- 170              		@ frame_needed = 0, uses_anonymous_args = 0
- 171 0000 08B5     		push	{r3, lr}
- 172              		.cfi_def_cfa_offset 8
- 173              		.cfi_offset 3, -8
- 174              		.cfi_offset 14, -4
-  35:Core/Src/button_driver.c ****     // EXTI hattı kontrol ediliyor
-  36:Core/Src/button_driver.c ****     if (EXTI->PR1 & (1 << 13)) {
- 175              		.loc 1 36 5 view .LVU45
- 176              		.loc 1 36 13 is_stmt 0 view .LVU46
- 177 0002 0D4B     		ldr	r3, .L11
- 178 0004 5B69     		ldr	r3, [r3, #20]
- 179              		.loc 1 36 8 view .LVU47
- 180 0006 13F4005F 		tst	r3, #8192
- 181 000a 00D1     		bne	.L10
- 182              	.L7:
-  37:Core/Src/button_driver.c ****         // Kesme bayrağını temizle
-  38:Core/Src/button_driver.c ****         EXTI->PR1 |= (1 << 13);
-  39:Core/Src/button_driver.c **** 
-  40:Core/Src/button_driver.c ****         // Buton durumunu oku
-  41:Core/Src/button_driver.c ****         if (!button_read()) {
-  42:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
-  43:Core/Src/button_driver.c ****             GPIOA->ODR |= (1<<5);
-  44:Core/Src/button_driver.c ****             goto_address(0x08000000);
-  45:Core/Src/button_driver.c ****         }
-  46:Core/Src/button_driver.c ****     }
-  47:Core/Src/button_driver.c **** }
- 183              		.loc 1 47 1 view .LVU48
- 184 000c 08BD     		pop	{r3, pc}
- 185              	.L10:
-  38:Core/Src/button_driver.c **** 
- 186              		.loc 1 38 9 is_stmt 1 view .LVU49
-  38:Core/Src/button_driver.c **** 
- 187              		.loc 1 38 13 is_stmt 0 view .LVU50
- 188 000e 0A4A     		ldr	r2, .L11
- 189 0010 5369     		ldr	r3, [r2, #20]
-  38:Core/Src/button_driver.c **** 
- 190              		.loc 1 38 19 view .LVU51
- 191 0012 43F40053 		orr	r3, r3, #8192
- 192 0016 5361     		str	r3, [r2, #20]
-  41:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
- 193              		.loc 1 41 9 is_stmt 1 view .LVU52
-ARM GAS  /tmp/ccsKqFBs.s 			page 37
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 201 0000 08B5     		push	{r3, lr}
+ 202              		.cfi_def_cfa_offset 8
+ 203              		.cfi_offset 3, -8
+ 204              		.cfi_offset 14, -4
+  38:Core/Src/button_driver.c ****     // EXTI hattı kontrol ediliyor
+  39:Core/Src/button_driver.c ****     if (EXTI->PR1 & (1 << 13)) {
+ 205              		.loc 1 39 5 view .LVU59
+ 206              		.loc 1 39 13 is_stmt 0 view .LVU60
+ 207 0002 0A4B     		ldr	r3, .L11
+ 208 0004 5B69     		ldr	r3, [r3, #20]
+ 209              		.loc 1 39 8 view .LVU61
+ 210 0006 13F4005F 		tst	r3, #8192
+ 211 000a 00D1     		bne	.L10
+ 212              	.L7:
+  40:Core/Src/button_driver.c ****         // Kesme bayrağını temizle
+  41:Core/Src/button_driver.c ****         EXTI->PR1 |= (1 << 13);
+  42:Core/Src/button_driver.c **** 
+  43:Core/Src/button_driver.c ****         // Buton durumunu oku
+  44:Core/Src/button_driver.c ****         if (!button_read()) {
+  45:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+  46:Core/Src/button_driver.c ****             goto_address(0x08000000);
+  47:Core/Src/button_driver.c ****         }
+  48:Core/Src/button_driver.c ****     }
+  49:Core/Src/button_driver.c **** }
+ 213              		.loc 1 49 1 view .LVU62
+ 214 000c 08BD     		pop	{r3, pc}
+ 215              	.L10:
+  41:Core/Src/button_driver.c **** 
+ 216              		.loc 1 41 9 is_stmt 1 view .LVU63
+  41:Core/Src/button_driver.c **** 
+ 217              		.loc 1 41 13 is_stmt 0 view .LVU64
+ 218 000e 074A     		ldr	r2, .L11
+ 219 0010 5369     		ldr	r3, [r2, #20]
+  41:Core/Src/button_driver.c **** 
+ 220              		.loc 1 41 19 view .LVU65
+ 221 0012 43F40053 		orr	r3, r3, #8192
+ 222 0016 5361     		str	r3, [r2, #20]
+  44:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ 223              		.loc 1 44 9 is_stmt 1 view .LVU66
+  44:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ 224              		.loc 1 44 14 is_stmt 0 view .LVU67
+ 225 0018 FFF7FEFF 		bl	button_read
+ 226              	.LVL6:
+  44:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ 227              		.loc 1 44 12 discriminator 1 view .LVU68
+ 228 001c 0028     		cmp	r0, #0
+ 229 001e F5D1     		bne	.L7
+  46:Core/Src/button_driver.c ****         }
+ 230              		.loc 1 46 13 is_stmt 1 view .LVU69
+ 231 0020 4FF00060 		mov	r0, #134217728
+ 232 0024 FFF7FEFF 		bl	goto_address
+ 233              	.LVL7:
+ 234              		.loc 1 49 1 is_stmt 0 view .LVU70
+ 235 0028 F0E7     		b	.L7
+ 236              	.L12:
+ARM GAS  /tmp/cchgWSjo.s 			page 38
 
 
-  41:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
- 194              		.loc 1 41 14 is_stmt 0 view .LVU53
- 195 0018 FFF7FEFF 		bl	button_read
- 196              	.LVL4:
-  41:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
- 197              		.loc 1 41 12 discriminator 1 view .LVU54
- 198 001c 0028     		cmp	r0, #0
- 199 001e F5D1     		bne	.L7
-  43:Core/Src/button_driver.c ****             goto_address(0x08000000);
- 200              		.loc 1 43 13 is_stmt 1 view .LVU55
-  43:Core/Src/button_driver.c ****             goto_address(0x08000000);
- 201              		.loc 1 43 18 is_stmt 0 view .LVU56
- 202 0020 4FF09042 		mov	r2, #1207959552
- 203 0024 5369     		ldr	r3, [r2, #20]
-  43:Core/Src/button_driver.c ****             goto_address(0x08000000);
- 204              		.loc 1 43 24 view .LVU57
- 205 0026 43F02003 		orr	r3, r3, #32
- 206 002a 5361     		str	r3, [r2, #20]
-  44:Core/Src/button_driver.c ****         }
- 207              		.loc 1 44 13 is_stmt 1 view .LVU58
- 208 002c 4FF00060 		mov	r0, #134217728
- 209 0030 FFF7FEFF 		bl	goto_address
- 210              	.LVL5:
- 211              		.loc 1 47 1 is_stmt 0 view .LVU59
- 212 0034 EAE7     		b	.L7
- 213              	.L12:
- 214 0036 00BF     		.align	2
- 215              	.L11:
- 216 0038 00040140 		.word	1073808384
- 217              		.cfi_endproc
- 218              	.LFE134:
- 220              		.text
- 221              	.Letext0:
- 222              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 223              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 224              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 225              		.file 6 "Core/Inc/goto_address.h"
-ARM GAS  /tmp/ccsKqFBs.s 			page 38
+ 237 002a 00BF     		.align	2
+ 238              	.L11:
+ 239 002c 00040140 		.word	1073808384
+ 240              		.cfi_endproc
+ 241              	.LFE134:
+ 243              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	EXTI15_10_IRQHandler
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	EXTI15_10_IRQHandler:
+ 251              	.LFB135:
+  50:Core/Src/button_driver.c **** 
+  51:Core/Src/button_driver.c **** void EXTI15_10_IRQHandler(void){
+ 252              		.loc 1 51 32 is_stmt 1 view -0
+ 253              		.cfi_startproc
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256 0000 08B5     		push	{r3, lr}
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 3, -8
+ 259              		.cfi_offset 14, -4
+  52:Core/Src/button_driver.c ****     // EXTI hattı kontrol ediliyor
+  53:Core/Src/button_driver.c ****     if (EXTI->PR1 & (1 << 13)) {
+ 260              		.loc 1 53 5 view .LVU72
+ 261              		.loc 1 53 13 is_stmt 0 view .LVU73
+ 262 0002 0A4B     		ldr	r3, .L17
+ 263 0004 5B69     		ldr	r3, [r3, #20]
+ 264              		.loc 1 53 8 view .LVU74
+ 265 0006 13F4005F 		tst	r3, #8192
+ 266 000a 00D1     		bne	.L16
+ 267              	.L13:
+  54:Core/Src/button_driver.c ****         // Kesme bayrağını temizle
+  55:Core/Src/button_driver.c ****         EXTI->PR1 |= (1 << 13);
+  56:Core/Src/button_driver.c **** 
+  57:Core/Src/button_driver.c ****         // Buton durumunu oku
+  58:Core/Src/button_driver.c ****         if (!button_read()) {
+  59:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+  60:Core/Src/button_driver.c ****             goto_address(0x08000000);
+  61:Core/Src/button_driver.c ****         }
+  62:Core/Src/button_driver.c ****     }
+  63:Core/Src/button_driver.c **** }
+ 268              		.loc 1 63 1 view .LVU75
+ 269 000c 08BD     		pop	{r3, pc}
+ 270              	.L16:
+  55:Core/Src/button_driver.c **** 
+ 271              		.loc 1 55 9 is_stmt 1 view .LVU76
+  55:Core/Src/button_driver.c **** 
+ 272              		.loc 1 55 13 is_stmt 0 view .LVU77
+ 273 000e 074A     		ldr	r2, .L17
+ 274 0010 5369     		ldr	r3, [r2, #20]
+  55:Core/Src/button_driver.c **** 
+ 275              		.loc 1 55 19 view .LVU78
+ 276 0012 43F40053 		orr	r3, r3, #8192
+ 277 0016 5361     		str	r3, [r2, #20]
+  58:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ARM GAS  /tmp/cchgWSjo.s 			page 39
+
+
+ 278              		.loc 1 58 9 is_stmt 1 view .LVU79
+  58:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ 279              		.loc 1 58 14 is_stmt 0 view .LVU80
+ 280 0018 FFF7FEFF 		bl	button_read
+ 281              	.LVL8:
+  58:Core/Src/button_driver.c ****             // Adrese atla (bootloader fonksiyonunu çağır)
+ 282              		.loc 1 58 12 discriminator 1 view .LVU81
+ 283 001c 0028     		cmp	r0, #0
+ 284 001e F5D1     		bne	.L13
+  60:Core/Src/button_driver.c ****         }
+ 285              		.loc 1 60 13 is_stmt 1 view .LVU82
+ 286 0020 4FF00060 		mov	r0, #134217728
+ 287 0024 FFF7FEFF 		bl	goto_address
+ 288              	.LVL9:
+ 289              		.loc 1 63 1 is_stmt 0 view .LVU83
+ 290 0028 F0E7     		b	.L13
+ 291              	.L18:
+ 292 002a 00BF     		.align	2
+ 293              	.L17:
+ 294 002c 00040140 		.word	1073808384
+ 295              		.cfi_endproc
+ 296              	.LFE135:
+ 298              		.text
+ 299              	.Letext0:
+ 300              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 301              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 302              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 303              		.file 6 "Core/Inc/goto_address.h"
+ARM GAS  /tmp/cchgWSjo.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 button_driver.c
-     /tmp/ccsKqFBs.s:21     .text.button_init:00000000 $t
-     /tmp/ccsKqFBs.s:27     .text.button_init:00000000 button_init
-     /tmp/ccsKqFBs.s:120    .text.button_init:0000006c $d
-     /tmp/ccsKqFBs.s:127    .text.button_read:00000000 $t
-     /tmp/ccsKqFBs.s:133    .text.button_read:00000000 button_read
-     /tmp/ccsKqFBs.s:154    .text.button_read:0000000c $d
-     /tmp/ccsKqFBs.s:159    .text.EXTI15_10_IRQHandler:00000000 $t
-     /tmp/ccsKqFBs.s:165    .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
-     /tmp/ccsKqFBs.s:216    .text.EXTI15_10_IRQHandler:00000038 $d
+     /tmp/cchgWSjo.s:21     .text.button_init:00000000 $t
+     /tmp/cchgWSjo.s:27     .text.button_init:00000000 button_init
+     /tmp/cchgWSjo.s:150    .text.button_init:00000078 $d
+     /tmp/cchgWSjo.s:157    .text.button_read:00000000 $t
+     /tmp/cchgWSjo.s:163    .text.button_read:00000000 button_read
+     /tmp/cchgWSjo.s:184    .text.button_read:0000000c $d
+     /tmp/cchgWSjo.s:189    .text.EXTI9_5_IRQHandler:00000000 $t
+     /tmp/cchgWSjo.s:195    .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
+     /tmp/cchgWSjo.s:239    .text.EXTI9_5_IRQHandler:0000002c $d
+     /tmp/cchgWSjo.s:244    .text.EXTI15_10_IRQHandler:00000000 $t
+     /tmp/cchgWSjo.s:250    .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+     /tmp/cchgWSjo.s:294    .text.EXTI15_10_IRQHandler:0000002c $d
 
 UNDEFINED SYMBOLS
 goto_address

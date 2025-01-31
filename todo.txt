@@ -1,3 +1,4 @@
+
 .elf = executable and linkable format
 linker = memory layout, where to put everything, flash memory start address, ram start address and how big are these 
 source code -> compiler -> .elf -> linker script -> final executable -> flash programmer (writes only to flash memory) -> mcu 
@@ -12,3 +13,6 @@ i added button driver and it is working, i need to see if i hold the button pres
 after that maybe i add 2 different program and make a serial menu for it, i could choose the program that i want to go and when i am in the application i return to the bootloader 
 
 bir bootloaderın kullandığı peripheral kullanıcının attığı kodda configure edilirse ne olur.
+
+bootlaoder program's main function's address is 0x800043c
+

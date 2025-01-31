@@ -128,7 +128,7 @@
 #if defined(USER_VECT_TAB_ADDRESS)
 /*!< Uncomment the following line if you need to relocate your vector Table
      in Sram else user remap will be done in Flash. */
-/* #define VECT_TAB_SRAM */
+ //#define VECT_TAB_SRAM 
 
 #if defined(VECT_TAB_SRAM)
 #define VECT_TAB_BASE_ADDRESS   SRAM1_BASE      /*!< Vector Table base address field.

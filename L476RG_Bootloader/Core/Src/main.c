@@ -69,7 +69,6 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   char buffer[50];
-  sprintf(buffer, "\n\rNow progam is in the bootloader\r\n");
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -99,9 +98,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  sprintf(buffer, "\n\rNow progam is in the bootloader\r\n");
   HAL_UART_Transmit(&huart2, (uint8_t *)buffer, strlen((const char*) buffer), 10);
   button_init();
-    goto_address(0x08040000);
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
