@@ -1,4 +1,5 @@
 
+
 .elf = executable and linkable format
 linker = memory layout, where to put everything, flash memory start address, ram start address and how big are these 
 source code -> compiler -> .elf -> linker script -> final executable -> flash programmer (writes only to flash memory) -> mcu 
@@ -15,4 +16,4 @@ after that maybe i add 2 different program and make a serial menu for it, i coul
 bir bootloaderın kullandığı peripheral kullanıcının attığı kodda configure edilirse ne olur.
 
 bootlaoder program's main function's address is 0x800043c
-
+maybe disabling interrupts when program enters bootloader's interrupt handler and activating those again after program jumps to application is the solution idkmaybe disabling interrupts when program enters bootloader's interrupt handler and activating those again after program jumps to application is the solution idk..maybe disabling interrupts when program enters bootloader's interrupt handler and activating those again after program jumps to application is the solution idk.

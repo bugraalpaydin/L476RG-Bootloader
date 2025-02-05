@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccOpRbRV.s 			page 1
+ARM GAS  /tmp/cc85QUd4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -30,38 +30,41 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
   28              	.LVL0:
   29              	.LFB132:
    1:Core/Src/goto_address.c **** #include "goto_address.h"
-   2:Core/Src/goto_address.c **** 
-   3:Core/Src/goto_address.c **** void goto_address(uint32_t address){
-  30              		.loc 1 3 36 view -0
+   2:Core/Src/goto_address.c **** #include "stm32l4xx_hal.h"
+   3:Core/Src/goto_address.c **** 
+   4:Core/Src/goto_address.c **** void goto_address(uint32_t address){
+  30              		.loc 1 4 36 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 3 36 is_stmt 0 view .LVU1
-  35 0000 08B5     		push	{r3, lr}
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 3, -8
-  38              		.cfi_offset 14, -4
-   4:Core/Src/goto_address.c ****     SCB->VTOR = 0x40000;
-  39              		.loc 1 4 5 is_stmt 1 view .LVU2
-  40              		.loc 1 4 15 is_stmt 0 view .LVU3
-  41 0002 054B     		ldr	r3, .L3
-  42 0004 4FF48022 		mov	r2, #262144
-  43 0008 9A60     		str	r2, [r3, #8]
-   5:Core/Src/goto_address.c ****     void (*app_reset_handler)(void) = (void*)(*(volatile uint32_t*)(address+4));
-  44              		.loc 1 5 5 is_stmt 1 view .LVU4
-  45              		.loc 1 5 47 is_stmt 0 view .LVU5
-  46 000a 4368     		ldr	r3, [r0, #4]
-  47              	.LVL1:
-   6:Core/Src/goto_address.c ****   __set_MSP((*(volatile uint32_t*)(address)));
-  48              		.loc 1 6 3 is_stmt 1 view .LVU6
-  49 000c 0268     		ldr	r2, [r0]
-  50              	.LVL2:
-  51              	.LBB4:
-  52              	.LBI4:
-ARM GAS  /tmp/ccOpRbRV.s 			page 2
+  34              		.loc 1 4 36 is_stmt 0 view .LVU1
+  35 0000 38B5     		push	{r3, r4, r5, lr}
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0446     		mov	r4, r0
+   5:Core/Src/goto_address.c ****     //vectorr table offsett
+   6:Core/Src/goto_address.c ****     void (*app_reset_handler)(void) = (void*)(*(volatile uint32_t*)(address+4));
+  42              		.loc 1 6 5 is_stmt 1 view .LVU2
+  43              		.loc 1 6 47 is_stmt 0 view .LVU3
+  44 0004 4568     		ldr	r5, [r0, #4]
+  45              	.LVL1:
+   7:Core/Src/goto_address.c ****     HAL_DeInit();
+  46              		.loc 1 7 5 is_stmt 1 view .LVU4
+  47 0006 FFF7FEFF 		bl	HAL_DeInit
+  48              	.LVL2:
+   8:Core/Src/goto_address.c ****   __set_MSP((*(volatile uint32_t*)(address)));
+  49              		.loc 1 8 3 view .LVU5
+  50 000a 2368     		ldr	r3, [r4]
+ARM GAS  /tmp/cc85QUd4.s 			page 2
 
 
-  53              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+  51              	.LVL3:
+  52              	.LBB4:
+  53              	.LBI4:
+  54              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -115,12 +118,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
   51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
   53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+ARM GAS  /tmp/cc85QUd4.s 			page 3
+
+
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
-ARM GAS  /tmp/ccOpRbRV.s 			page 3
-
-
   57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
   59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
@@ -175,12 +178,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ARM GAS  /tmp/cc85QUd4.s 			page 4
+
+
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
-ARM GAS  /tmp/ccOpRbRV.s 			page 4
-
-
  114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
  115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  116:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __COMPILER_BARRIER
@@ -235,12 +238,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  165:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  166:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __PROGRAM_START           __cmsis_start
  167:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ARM GAS  /tmp/cc85QUd4.s 			page 5
+
+
  168:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  169:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __INITIAL_SP
  170:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __INITIAL_SP              __StackTop
-ARM GAS  /tmp/ccOpRbRV.s 			page 5
-
-
  171:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  172:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  173:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __STACK_LIMIT
@@ -295,12 +298,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  222:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control" : "=r" (result) );
  223:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  224:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ARM GAS  /tmp/cc85QUd4.s 			page 6
+
+
  225:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  226:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  227:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
-ARM GAS  /tmp/ccOpRbRV.s 			page 6
-
-
  228:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  229:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register (non-secure)
  230:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the non-secure Control Register when in secure mode.
@@ -355,12 +358,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  279:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  280:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  281:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ARM GAS  /tmp/cc85QUd4.s 			page 7
+
+
  282:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get APSR Register
  283:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the APSR Register.
  284:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               APSR Register value
-ARM GAS  /tmp/ccOpRbRV.s 			page 7
-
-
  285:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  286:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_APSR(void)
  287:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -415,12 +418,12 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  336:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  337:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  338:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc85QUd4.s 			page 8
+
+
  339:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  340:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer
  341:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Process Stack Pointer (PSP).
-ARM GAS  /tmp/ccOpRbRV.s 			page 8
-
-
  342:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfProcStack  Process Stack Pointer value to set
  343:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  344:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_PSP(uint32_t topOfProcStack)
@@ -475,53 +478,51 @@ ARM GAS  /tmp/ccOpRbRV.s 			page 1
  393:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  394:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer
  395:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Main Stack Pointer (MSP).
+ARM GAS  /tmp/cc85QUd4.s 			page 9
+
+
  396:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfMainStack  Main Stack Pointer value to set
  397:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  398:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_MSP(uint32_t topOfMainStack)
-ARM GAS  /tmp/ccOpRbRV.s 			page 9
-
-
-  54              		.loc 2 398 27 view .LVU7
-  55              	.LBB5:
+  55              		.loc 2 398 27 view .LVU6
+  56              	.LBB5:
  399:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  400:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
-  56              		.loc 2 400 3 view .LVU8
-  57              		.syntax unified
-  58              	@ 400 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-  59 000e 82F30888 		MSR msp, r2
-  60              	@ 0 "" 2
-  61              	.LVL3:
-  62              		.loc 2 400 3 is_stmt 0 view .LVU9
-  63              		.thumb
-  64              		.syntax unified
-  65              	.LBE5:
-  66              	.LBE4:
-   7:Core/Src/goto_address.c ****     app_reset_handler();
-  67              		.loc 1 7 5 is_stmt 1 view .LVU10
-  68 0012 9847     		blx	r3
-  69              	.LVL4:
-   8:Core/Src/goto_address.c ****    
-   9:Core/Src/goto_address.c **** }
-  70              		.loc 1 9 1 is_stmt 0 view .LVU11
-  71 0014 08BD     		pop	{r3, pc}
-  72              	.L4:
-  73 0016 00BF     		.align	2
-  74              	.L3:
-  75 0018 00ED00E0 		.word	-536810240
-  76              		.cfi_endproc
-  77              	.LFE132:
-  79              		.text
-  80              	.Letext0:
-  81              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  82              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  83              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
-ARM GAS  /tmp/ccOpRbRV.s 			page 10
+  57              		.loc 2 400 3 view .LVU7
+  58              		.syntax unified
+  59              	@ 400 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  60 000c 83F30888 		MSR msp, r3
+  61              	@ 0 "" 2
+  62              	.LVL4:
+  63              		.loc 2 400 3 is_stmt 0 view .LVU8
+  64              		.thumb
+  65              		.syntax unified
+  66              	.LBE5:
+  67              	.LBE4:
+   9:Core/Src/goto_address.c ****     app_reset_handler();
+  68              		.loc 1 9 5 is_stmt 1 view .LVU9
+  69 0010 A847     		blx	r5
+  70              	.LVL5:
+  10:Core/Src/goto_address.c ****    
+  11:Core/Src/goto_address.c **** }
+  71              		.loc 1 11 1 is_stmt 0 view .LVU10
+  72 0012 38BD     		pop	{r3, r4, r5, pc}
+  73              		.loc 1 11 1 view .LVU11
+  74              		.cfi_endproc
+  75              	.LFE132:
+  77              		.text
+  78              	.Letext0:
+  79              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  80              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  81              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+  82              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ARM GAS  /tmp/cc85QUd4.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 goto_address.c
-     /tmp/ccOpRbRV.s:21     .text.goto_address:00000000 $t
-     /tmp/ccOpRbRV.s:27     .text.goto_address:00000000 goto_address
-     /tmp/ccOpRbRV.s:75     .text.goto_address:00000018 $d
+     /tmp/cc85QUd4.s:21     .text.goto_address:00000000 $t
+     /tmp/cc85QUd4.s:27     .text.goto_address:00000000 goto_address
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+HAL_DeInit

@@ -23,6 +23,10 @@
 /* USER CODE BEGIN Includes */
 #include "goto_address.h"
 #include "button_driver.h"
+#include "stm32l476xx.h"
+#include "stm32l4xx_hal_conf.h"
+#include "stm32l4xx_hal_cortex.h"
+#include "stm32l4xx_hal_uart.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -80,6 +84,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -97,7 +102,6 @@ int main(void)
     char string[50];
     sprintf(string, "\n\rNow program is in the application\n\r");
     HAL_UART_Transmit(&huart2, (uint8_t *)string, strlen(string), 10);
-    button_init();
    /* USER CODE END 2 */
   
   /* Infinite loop */
@@ -105,10 +109,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-        //works fine so why the fuck my interrupts doesn't work
-    if (!(GPIOC->IDR & (1<<13))){
-            goto_address(0x08000000);
-    }
+    //works fine so why the fuck my interrupts doesn't work
+    //if (!(GPIOC->IDR & (1<<13))){
+      //      goto_address(0x08000000);
+    //}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -188,6 +192,8 @@ static void MX_USART2_UART_Init(void)
   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
+    HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
   if (HAL_UART_Init(&huart2) != HAL_OK)
   {
     Error_Handler();
@@ -236,6 +242,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void USART2_IRQHandler(void){
+    if (huart2.Instance == USART2) {
+        goto_address(0x08000000);
+    }
+}
 /* USER CODE END 4 */
 
 /**
