@@ -1,7 +1,6 @@
 #include "button_driver.h"
 #include <stm32l476xx.h>
-
-
+//
 //for interrup generation PC13 -> EXTI13
 //SYSCFG->EXTICR4  bits 7:4  0010
 
@@ -32,14 +31,7 @@ uint32_t button_read(void){
 void EXTI15_10_IRQHandler(void){
     // EXTI hattı kontrol ediliyor
     if (EXTI->PR1 & (1 << 13)) {
-        // Kesme bayrağını temizle
         EXTI->PR1 |= (1 << 13);
-
-        // Buton durumunu oku
-        if (!button_read()) {
-            // Adrese atla (bootloader fonksiyonunu çağır)
-            SCB->VTOR = 0x08040000;
-            goto_address(0x08040000);
-        }
+        goto_address(0x08040000);
     }
 }

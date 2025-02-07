@@ -23,15 +23,10 @@
 /* USER CODE BEGIN Includes */
 #include "goto_address.h"
 #include "button_driver.h"
-#include "stm32l476xx.h"
-#include "stm32l4xx_hal_conf.h"
-#include "stm32l4xx_hal_cortex.h"
-#include "stm32l4xx_hal_uart.h"
 #include <stdio.h>
 #include <string.h>
 
 /* USER CODE END Includes */
-
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -97,12 +92,12 @@ int main(void)
   /* Initialize all configured peripherals */
     MX_GPIO_Init();
     MX_USART2_UART_Init();
-    button_init();
   /* USER CODE BEGIN 2 */
     char string[50];
     sprintf(string, "\n\rNow program is in the application\n\r");
     HAL_UART_Transmit(&huart2, (uint8_t *)string, strlen(string), 10);
-   /* USER CODE END 2 */
+    button_init();
+   /* US2R CODE END 2 */
   
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
