@@ -36,12 +36,13 @@ BUILD_DIR = build
 ######################################
 # C sources 
 C_SOURCES =  \
-Core/Src/main.c \
-Core/Src/stm32l4xx_it.c \
-Core/Src/button_driver.c \
-Core/Src/goto_address.c \
-Core/Src/bootloader_port_driver.c \
-Core/Src/stm32l4xx_hal_msp.c \
+src/main.c \
+src/usart/usart.c \
+src/nvic/stm32l4xx_it.c \
+src/button/button_driver.c \
+src/goto/goto_address.c \
+src/bootloader/bootloader_sm.c \
+libs/stm32l4xx_hal_msp.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c \
@@ -61,13 +62,13 @@ Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.c \
-Core/Src/system_stm32l4xx.c \
-Core/Src/sysmem.c \
-Core/Src/syscalls.c
+libs/system_stm32l4xx.c \
+libs/sysmem.c \
+libs/syscalls.c
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32l476xx.s
+src/startup_stm32l476xx.s
 
 # ASM sources
 ASMM_SOURCES = 
@@ -123,7 +124,13 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
--ICore/Inc \
+-Isrc \
+-Ilibs \
+-Isrc/button \
+-Isrc/usart \
+-Isrc/bootloader \
+-Isrc/goto \
+-Isrc/nvic \
 -IDrivers/STM32L4xx_HAL_Driver/Inc \
 -IDrivers/STM32L4xx_HAL_Driver/Inc/Legacy \
 -IDrivers/CMSIS/Device/ST/STM32L4xx/Include \
@@ -199,7 +206,7 @@ clean:
 	-rm -fR $(BUILD_DIR)
   
 
-flash: $(BUILD_DIR)/$(TARGET).elf
+install: $(BUILD_DIR)/$(TARGET).elf
 	 openocd -f ./openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
 #######################################
 # dependencies

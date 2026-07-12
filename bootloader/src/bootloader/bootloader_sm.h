@@ -8,15 +8,6 @@
 
 #include "main.h"
 
-#define BUFFER_SIZE 10000
-
-
-typedef struct {
-    uint8_t buffer[BUFFER_SIZE];
-    uint32_t buffer_head_pointer;
-    uint32_t buffer_tail_pointer;
-    uint32_t received_bytes;
-}uart_buffer_t;
 
 /* shell command defines */
 typedef enum {
@@ -36,14 +27,6 @@ typedef enum {
     BOOT_STATE_WAIT_CHUNK_DATA,
 } bootloader_state_t;
 
-
-extern volatile uart_buffer_t uart_buffer_tx;
-extern volatile uart_buffer_t uart_buffer_rx;
-
-extern UART_HandleTypeDef huart2;
-
-void bootloader_uart_init(void);
-void bootloader_uart_receive(void);
 void bootloader_sm_handler(void);
 
 #endif

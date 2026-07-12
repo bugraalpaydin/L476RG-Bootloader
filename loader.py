@@ -1,7 +1,9 @@
 from sys import byteorder
+from typing import Required
 import serial
 import time
 import os
+import argparse
 
 #bootloader komutları
 CMD_START_FLASH = 0x01
@@ -12,8 +14,8 @@ CMD_JUMP_APP    = 0x04
 CMD_ERASE_FLASH = 0x05
 
 #cevap kodları 
-ACK = 0x06
-NACK = 0x15
+CMD_ACK = 0x06
+CMD_NACK = 0x15
 
 #ana menü yapsak güzel olur oradan seçeriz istenilen komutu
 class bootloader:
@@ -133,8 +135,14 @@ class bootloader:
 
 def main():
     # port ve binary path bilgisini kullanıcı terminalden girsin 
-    port = "/dev/ttyACM0"
-    bin_path = "/home/bugraalp/personalFiles/embedded/STM32/STM32CubeIDE/workspace_1.14.0/nucleo-bootloader/L476RG_Bootloader/build/L476RG_Bootloader.elf"
+    parser = argparse.ArgumentParser(
+                        prog="bootloader",
+                        description="This program flashes stm32l4 executable files",
+                        epilog=" ")
+    parser.add_argument("--dev", help="stm32 device port", required=True)
+    args = parser.parse_args()
+    port = args.dev
+    bin_path = "/home/bugraalp/personalFiles/embedded/STM32/STM32CubeIDE/workspace_1.14.0/nucleo-bootloader/bootloader/build/L476RG_Bootloader.elf"
     bl = bootloader(port)
     succed = bl.flash_program(bin_path)
 
