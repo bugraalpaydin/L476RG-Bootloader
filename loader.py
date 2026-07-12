@@ -3,7 +3,7 @@ import serial
 import time
 import os
 
-#bootloader konutları
+#bootloader komutları
 CMD_START_FLASH = 0x01
 CMD_WRITE_DATA  = 0x02
 CMD_END_FLASH   = 0x03
