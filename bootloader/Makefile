@@ -207,7 +207,7 @@ clean:
   
 
 install: $(BUILD_DIR)/$(TARGET).elf
-	 openocd -f ./openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	STM32_Programmer_CLI -c port=SWD mode=NORMAL -e all -w "build/L476RG_Bootloader.elf" -v -rst 
 #######################################
 # dependencies
 #######################################

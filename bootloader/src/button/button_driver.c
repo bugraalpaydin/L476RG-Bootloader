@@ -31,7 +31,7 @@ uint32_t button_read(void){
 void EXTI15_10_IRQHandler(void){
     // EXTI hattı kontrol ediliyor
     if (EXTI->PR1 & (1 << 13)) {
-        EXTI->PR1 |= (1 << 13);
+        EXTI->PR1 |= (1 << 13); /* clean the interrupt flag */
         goto_address(0x08040000);
     }
 }

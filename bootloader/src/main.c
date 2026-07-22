@@ -21,88 +21,53 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include "bootloader/bootloader_sm.h"
 #include "button_driver.h"
 #include "goto_address.h"
-#include "bootloader_sm.c"
+#include "bootloader_sm.h"
 #include "usart.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
+uint32_t coming_byte_length = 0;
+uint8_t coming_byte = 0;
 
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
-/* USER CODE BEGIN PFP */
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
+
+volatile system_events_t system_event = SYSTEM_IDLE;
+volatile bootloader_state_t current_state = BOOT_STATE_WAIT_COMMAND;
+
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
     char buffer[50];
-  /* USER CODE END 1 */
 
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  //MX_USART2_UART_Init();
+  // MX_USART2_UART_Init();
+    uart_init();
   /* USER CODE BEGIN 2 */
-    bootloader_sm_handler();
     sprintf(buffer, "\n\rNow progam is in the bootloader\r\n");
     HAL_UART_Transmit(&huart2, (uint8_t *)buffer, strlen((const char*) buffer), 10);
-    button_init();
+    // button_init();
   /* USER CODE END 2 */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1)
     {
     /* USER CODE END WHILE */
-        bootloader_sm_handler();
+    bootloader_sm_handler();
+
+    HAL_Delay(100);
     /* USER CODE BEGIN 3 */
     }
   /* USER CODE END 3 */

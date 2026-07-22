@@ -2,14 +2,20 @@
 #define __USART_H
 
 #include "main.h"
+#include <stdint.h>
+#include "bootloader_sm.h"
 
 void uart_init(void);
-void bootloader_uart_init(void);
-void bootloader_uart_receive(void);
+uint32_t uart_read(uint8_t *buf, uint32_t len);
+uint32_t uart_bytes_to_read(void);
+void uart_write_buf(uint8_t *buf, uint32_t len);
 
 #define BUFFER_SIZE 10000
 
+extern volatile bootloader_state_t current_state;
+extern volatile system_events_t system_event;
 extern UART_HandleTypeDef huart2;
+
 
 typedef struct {
     uint8_t buffer[BUFFER_SIZE];
